@@ -1,0 +1,18 @@
+<h2></h2>
+
+<form action="<?php echo APP_URL; ?>/categorias/editar" method="POST">
+  <fieldset >
+					<legend>Editar categoria</legend>
+
+  <div>
+  <input type="hidden" name="id" value="<?php echo $categoria["id"]; ?>">
+  <p>
+    <label for="nombre">Nombre: </label>
+    <input type="text" name="nombre" value="<?php echo $categoria["nombre"]; ?>">
+  </p>
+  <p>
+    <input type="submit">
+  </p>
+</div>
+</fieldset>
+</form>

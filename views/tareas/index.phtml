@@ -1,0 +1,108 @@
+<h2>Lista de tareas</h2>
+ <?php
+      echo $this->Html->link(
+        "Agregar Tarea",
+        array(
+          "controller"=>"tareas",
+          "method"=>"agregar",
+        )
+      );?>
+
+  <?php
+      echo $this->Html->link(
+        "Lista de categorias",
+        array(
+          "controller"=>"categorias",
+          "method"=>"index",
+        )
+      );?>
+
+<br>
+<table border="1px">
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Descripcion</th>
+    <th>Categoria</th>
+    <th>Fecha</th>
+    <th>Prioridad</th>
+    <th>Status</th>
+    <th>Accion</th>
+
+  </tr>
+  <?php foreach ($tareas as $tarea):  ?>
+  <tr>
+    <td><?php echo $tarea["tareas"]["id"]; ?></td>
+    <td><?php
+    if($tarea["tareas"]["status"]==0):
+						echo "<s>".$tarea["tareas"]["nombre"]."</s>";
+					else:
+						echo $tarea["tareas"]["nombre"];
+					endif;
+      ?></td>
+    <td><?php
+    if($tarea["tareas"]["status"]==0):
+            echo "<s>".$tarea["tareas"]["descripcion"]."</s>";
+          else:
+          echo $tarea["tareas"]["descripcion"];
+          endif;
+           ?></td>
+    <td><?php
+    if($tarea["tareas"]["status"]==0):
+            echo "<s>".$tarea["categorias"]["nombre"]."</s>";
+          else:
+        echo $tarea["categorias"]["nombre"];
+          endif;
+     ?></td>
+    <td><?php
+    if($tarea["tareas"]["status"]==0):
+            echo "<s>".$tarea["tareas"]["fecha"]."</s>";
+          else:
+          echo $tarea["tareas"]["fecha"];
+          endif;
+  ?></td>
+    <td><?php
+
+					if ($tarea["tareas"]["prioridad"]<=3):
+						echo '"<a style="color:blue">Baja</a>"';
+					elseif($tarea["tareas"]["prioridad"]<=6):
+						echo '"<a style="color:orange">Media</a>"';
+					elseif($tarea["tareas"]["prioridad"]<=10):
+						echo '"<a style="color:red">Alta</a>"';
+					endif;
+					?></td>
+    <td><?php echo $tarea["tareas"]["status"]; ?></td>
+    <td>
+      <?php
+      echo $this->Html->link(
+        "Editar",
+        array(
+          "controller"=>"tareas",
+          "method"=>"editar",
+          "args"=>$tarea["tareas"]["id"]
+        ),
+        array(
+          "title"=>"Editar tarea",
+
+        )
+      );
+      echo " | ";
+      echo $this->Html->link(
+        "Eliminar",
+        array(
+          "controller"=>"tareas",
+          "method"=>"eliminar",
+          "args"=>$tarea["tareas"]["id"]
+        ),
+        array(
+          "id"=>"eliminar". " ".$tarea["tareas"]["id"],
+          "class"=>"class"
+        )
+      );
+
+       ?>
+
+    </td>
+  </tr>
+<?php endforeach; ?>
+</table>

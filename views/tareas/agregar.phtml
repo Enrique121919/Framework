@@ -1,0 +1,44 @@
+<h2></h2>
+
+<form action="<?php echo APP_URL; ?>/tareas/agregar" method="POST">
+  
+  <fieldset>
+					<legend>Agregar tarea</legend>
+
+  <div>
+  <p>
+    <label for="nombre">Nombre: </label>
+    <input type="text"  name="nombre">
+  </p>
+  <div/>
+  <p>
+    <label for="descripcion">Description: </label>
+    <input  type="textarea" name="descripcion">
+  </p>
+  <p>
+    <label for="categoria">Categoría: </label>
+    <select name="categoria_id">
+      <?php
+
+
+        foreach ($categorias as $categoria): ?>
+          <option value="<?php echo $categoria["categorias"]['id']?>">
+            <?php echo $categoria["categorias"]['nombre']; ?>
+          </option>
+        <?php endforeach;
+      ?>
+    </select>
+  </p>
+  <p>
+    <label for="fecha">Fecha: </label>
+    <input  type="date" name="fecha">
+  </p>
+  <p>
+    <label for="prioridad">Prioridad: </label>
+    <input  type="range" name="prioridad" min="1" max="10">
+  </p>
+  <p>
+    <input type="submit">
+  </p>
+    </fieldset>
+</form>
